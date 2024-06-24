@@ -13,12 +13,10 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const router = useRouter();
   const supabase = createClientComponentClient();
-
   const [isSentMagicLink, setIsSentMagicLink] = useState(false);
 
   const handleSignIn = async () => {
     const loginPromise = new Promise(async (resolve, reject) => {
-
       const { data, error } = await supabase.auth.signInWithOtp({
         email,
         options: {
@@ -43,34 +41,9 @@ export default function LoginPage() {
     });
   };
 
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (divRef.current) {
-      //@ts-ignore
-      window.google?.accounts?.id.initialize({
-        client_id:
-          '${process.env.GOOGLE_CLIENT_ID}',
-        callback: handleSignInWithGoogle,
-        context: 'signin',
-        ux_mode: 'popup',
-        itp_support: true,
-      });
-      //@ts-ignore
-      window.google?.accounts?.id.renderButton(divRef.current, {
-        theme: 'outline',
-        size: 'large',
-        type: 'standard',
-        text: 'continue_with',
-        shape: 'square',
-        width: 320,
-        logo_alignment: 'center',
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function handleSignInWithGoogle(response: any) {
+  const handleSignInWithGoogle = (response: any) => {
     const loginPromise = new Promise(async (resolve, reject) => {
       const { data, error } = await supabase.auth.signInWithIdToken({
         provider: 'google',
@@ -96,7 +69,28 @@ export default function LoginPage() {
       error:
         "Sign in failed! If you've signed in directly with your email previously, please try that",
     });
-  }
+  };
+
+  useEffect(() => {
+    if (divRef.current) {
+      window.google?.accounts?.id.initialize({
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
+        callback: handleSignInWithGoogle,
+        context: 'signin',
+        ux_mode: 'popup',
+        itp_support: true,
+      });
+      window.google?.accounts?.id.renderButton(divRef.current, {
+        theme: 'outline',
+        size: 'large',
+        type: 'standard',
+        text: 'continue_with',
+        shape: 'square',
+        width: 320,
+        logo_alignment: 'center',
+      });
+    }
+  }, []);
 
   return (
     <>
