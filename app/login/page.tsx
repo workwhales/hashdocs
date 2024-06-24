@@ -50,7 +50,7 @@ export default function LoginPage() {
       //@ts-ignore
       window.google?.accounts?.id.initialize({
         client_id:
-          '274576635618-0s6ola782ltn4idc3toi3tu622j1ulbr.apps.googleusercontent.com',
+          '${process.env.GOOGLE_CLIENT_ID}',
         callback: handleSignInWithGoogle,
         context: 'signin',
         ux_mode: 'popup',
