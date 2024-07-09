@@ -2,7 +2,7 @@
 'use client';
 import Navbar from '@/app/(marketing)/_components/navbar';
 import Link from 'next/link';
-import { useRouter, redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import Button from '../_components/button';
@@ -30,7 +30,8 @@ export default function LoginPage() {
         reject(false);
       } else {
         resolve(email);
-        redirect('/documents');
+        router.push('/dashboard');
+        router.refresh();
       }
     });
 

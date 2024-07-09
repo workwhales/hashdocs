@@ -42,7 +42,7 @@ export async function middleware(req: NextRequest) {
         Buffer.from(session.access_token.split('.')[1], 'base64').toString()
       );
 
-      if (parsed_token.app_metadata['org_ids'].at(0)) {
+      if (parsed_token.app_metadata?.['org_ids']?.at(0)) {
         return NextResponse.redirect(
           new URL(
             `/dashboard/${parsed_token.app_metadata['org_ids'].at(
