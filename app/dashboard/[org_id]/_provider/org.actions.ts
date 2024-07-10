@@ -17,6 +17,7 @@ export async function getOrg() {
       data: { user },
       error: user_error,
     } = await supabase.auth.getUser();
+    console.log("getOrg: user", user);
 
     if (!user || user_error || !user.email) {
       throw user_error || new Error('User not found');
@@ -25,6 +26,7 @@ export async function getOrg() {
     const { data: org, error: org_error } = await supabase
       .rpc('get_org')
       .returns<OrgType[]>();
+    console.log("getOrg: org", org);
 
     if (!org || org_error) {
       throw org_error || new Error('Org not found');
