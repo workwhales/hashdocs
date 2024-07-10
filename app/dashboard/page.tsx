@@ -5,11 +5,15 @@ import { createOrg, getOrg } from './[org_id]/_provider/org.actions';
 
 export default async function Page() {
   const { org, user } = await getOrg();
+  console.log('Page:', org, user);
 
   if (org.length == 0) {
     const new_org = await createOrg({ user: user });
+    console.log('createOrg:', new_org);
 
-    redirect(`/dashboard/${new_org.org_id}/documents`);
+    if (new_org) {
+      redirect(`/dashboard/${new_org.org_id}/documents`);
+    }
   }
 
   return (
