@@ -142,6 +142,7 @@ export const UploadDocumentModal: React.FC<UploadDocumentModalProps> = ({
           router.refresh();
           modalRef.current?.closeModal();
         } catch (error) {
+          console.error(error);
           reject(false);
         }
       }
