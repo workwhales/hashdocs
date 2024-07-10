@@ -7,9 +7,12 @@ export default async function Page() {
   const { org, user } = await getOrg();
   console.log('Page:', org, user);
 
+  if (!user) {
+    redirect('/login');
+  }
+
   if (org.length == 0) {
     const new_org = await createOrg({ user: user });
-    console.log('createOrg:', new_org);
 
     if (new_org) {
       redirect(`/dashboard/${new_org.org_id}/documents`);

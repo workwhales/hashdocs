@@ -1,13 +1,9 @@
 'use server';
 
-import {
-  createServerComponentClient,
-  supabaseAdminClient,
-} from '@/app/_utils/supabase';
+import { createServerComponentClient, supabaseAdminClient } from '@/app/_utils/supabase';
 import { OrgType } from '@/types';
 import { User } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export async function getOrg() {
   try {
@@ -34,6 +30,7 @@ export async function getOrg() {
     return { org, user };
   } catch (error) {
     console.error('Error fetching org', error);
+    return { org: [], user: null };
   }
 }
 
