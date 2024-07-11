@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from 'react';
 import { getOrg } from './org.actions';
 
@@ -27,6 +27,7 @@ export const OrgProvider = ({ children }: { children: React.ReactNode }) => {
         const { org } = await getOrg();
 
         const current_org = org.find((org) => org.org_id === org_id);
+        console.log('OrgContext.currentOrg:', current_org);
 
         if (current_org) {
           setOrg(current_org);
@@ -41,7 +42,7 @@ export const OrgProvider = ({ children }: { children: React.ReactNode }) => {
     () => ({
       org,
     }),
-    [org]
+    [org],
   );
 
   return <OrgContext.Provider value={value}>{children}</OrgContext.Provider>;
