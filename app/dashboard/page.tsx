@@ -5,7 +5,6 @@ import { createOrg, getOrg } from './[org_id]/_provider/org.actions';
 
 export default async function Page() {
   const { org, user } = await getOrg();
-  console.log('Page:', org, user);
 
   if (!user) {
     redirect('/login');

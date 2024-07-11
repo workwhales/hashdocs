@@ -37,7 +37,6 @@ export const UploadDocumentModal: React.FC<UploadDocumentModalProps> = ({
   const router = useRouter();
   const { org } = useOrg();
   const supabase = createClientComponentClient();
-  console.log("UploadDocumentModal: org", org);
 
   /*-------------------------------- FUNCTIONS ------------------------------*/
 
