@@ -40,7 +40,7 @@ export function relativeDate(dateval: string): string {
 
 export function formatTime(duration: number) {
   // convert milliseconds to seconds
-  const totalSeconds = Math.floor(duration / 1000);
+  const totalSeconds = duration ? Math.floor(duration / 1000) : 0;
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds - hours * 3600) / 60);
   const seconds = totalSeconds - hours * 3600 - minutes * 60;
