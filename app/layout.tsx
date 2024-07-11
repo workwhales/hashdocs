@@ -61,22 +61,22 @@ export default function RootLayout({
         <HashdocsToast />
         {children}
         <Analytics />
-        <Script
-          src="https://accounts.google.com/gsi/client"
-          strategy="beforeInteractive"
-        />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-QKEK5NGXV4"
-          async
-        />
-        <Script id="google-analytics">
-          {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-          
-            gtag('config', 'G-QKEK5NGXV4');
-            gtag('config', 'AW-11254957816');`}
-        </Script>
+        {/*<Script*/}
+        {/*  src="https://accounts.google.com/gsi/client"*/}
+        {/*  strategy="beforeInteractive"*/}
+        {/*/>*/}
+        {/*<Script*/}
+        {/*  src="https://www.googletagmanager.com/gtag/js?id=G-QKEK5NGXV4"*/}
+        {/*  async*/}
+        {/*/>*/}
+        {/*<Script id="google-analytics">*/}
+        {/*  {`window.dataLayer = window.dataLayer || [];*/}
+        {/*    function gtag(){dataLayer.push(arguments);}*/}
+        {/*    gtag('js', new Date());*/}
+        {/*  */}
+        {/*    gtag('config', 'G-QKEK5NGXV4');*/}
+        {/*    gtag('config', 'AW-11254957816');`}*/}
+        {/*</Script>*/}
       </body>
     </html>
   );
