@@ -6,13 +6,12 @@ import { User } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
 export async function getOrg() {
+  let user;
   try {
     const supabase = createServerComponentClient({ cookies: cookies() });
 
-    const {
-      data: { user },
-      error: user_error,
-    } = await supabase.auth.getUser();
+    const { data, error: user_error } = await supabase.auth.getUser();
+    user = data.user;
 
     if (!user || user_error || !user.email) {
       throw user_error || new Error('User not found');
@@ -30,7 +29,7 @@ export async function getOrg() {
     return { org, user };
   } catch (error) {
     console.error('Error fetching org', error);
-    return { org: [], user: null };
+    return { org: [], user };
   }
 }
 
