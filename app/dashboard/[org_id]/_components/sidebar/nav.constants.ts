@@ -18,24 +18,24 @@ export const primaryNavigation: primaryNavigationType[] = [
     description: 'Upload documents and create shareable links',
     icon: HiDocumentChartBar,
   },
-  {
-    name: 'Dataroom',
-    path: '/dataroom',
-    description: 'Manage your virtual data rooms',
-    icon: RiFolderLockFill,
-  },
-  {
-    name: 'Signatures',
-    path: '/signatures',
-    icon: AiFillSignature,
-    description: 'Collect and manage e-signatures',
-  },
-  {
-    name: 'Contacts',
-    path: '/contacts',
-    icon: RiContactsBookFill,
-    description: 'Manage contacts and viewers',
-  },
+  // {
+  //   name: 'Dataroom',
+  //   path: '/dataroom',
+  //   description: 'Manage your virtual data rooms',
+  //   icon: RiFolderLockFill,
+  // },
+  // {
+  //   name: 'Signatures',
+  //   path: '/signatures',
+  //   icon: AiFillSignature,
+  //   description: 'Collect and manage e-signatures',
+  // },
+  // {
+  //   name: 'Contacts',
+  //   path: '/contacts',
+  //   icon: RiContactsBookFill,
+  //   description: 'Manage contacts and viewers',
+  // },
   {
     name: 'Settings',
     path: '/settings',

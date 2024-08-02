@@ -4,6 +4,7 @@ import ViewerTopBar from '../../_components/viewerTopbar';
 import { getLink, getSignedURL } from './_actions/link.actions';
 import InvalidLink from './_components/invalid_link';
 import ViewerAuth from './_components/viewerAuth';
+import { HASHDOCS_META_TAGS } from '@/app/_utils/meta';
 
 export async function generateMetadata({
   params: { link_id }, // will be a page or nested layout
@@ -15,36 +16,21 @@ export async function generateMetadata({
 
   return {
     title: link_props?.document_name,
-    description: 'Securely view this document with Hashdocs',
+    description: 'Securely view this document with Dealroom',
     openGraph: {
-      title: link_props?.document_name ?? 'Hashdocs',
-      description: 'Securely view this document with Hashdocs',
-      siteName: 'Hashdocs',
+      title: link_props?.document_name ?? 'Dealroom',
+      description: 'Securely view this document with Dealroom',
+      siteName: 'Dealroom',
       images: [
         {
           url:
-            link_props?.thumbnail_image ??
-            `${process.env.NEXT_PUBLIC_BASE_URL}/og_base.png`,
+            link_props?.thumbnail_image ?? HASHDOCS_META_TAGS.og_image,
           width: 1200,
           height: 630,
         },
       ],
       locale: 'en_US',
       type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title:
-        link_props?.document_name ??
-        'Hashdocs - an open source docsend alternative',
-      description: 'Securely view this document with Hashdocs',
-      siteId: '1467726470533754880',
-      creator: '@rbkayz',
-      creatorId: '1467726470533754880',
-      images: [
-        link_props?.thumbnail_image ??
-          `${process.env.NEXT_PUBLIC_BASE_URL}/og_base.png`,
-      ],
     },
   };
 }

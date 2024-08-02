@@ -1,7 +1,5 @@
 /* global google */
 'use client';
-import Navbar from '@/app/(marketing)/_components/navbar';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -73,11 +71,11 @@ export default function LoginPage() {
   return (
     <>
       <section className="flex h-screen w-full flex-1 flex-col items-start overflow-y-scroll bg-gray-50">
-        <Navbar />
         <div className="flex h-full w-full flex-1 flex-col items-center justify-center px-4">
           <div
             className="flex h-[400px] w-full max-w-sm flex-col justify-center gap-y-4 rounded-lg bg-white p-8 text-center font-semibold leading-6 tracking-wide shadow-lg">
-            <p className="uppercase">{'Welcome to hashdocs'}</p>
+            <img src="/logo_256.png" className="h-14 w-14 mb-1 self-center" />
+            <p className="uppercase">{'Welcome to Dealroom'}</p>
             {isSentMagicLink ? (
               <p className="font-normal">
                 Thank you!
@@ -97,7 +95,7 @@ export default function LoginPage() {
                     name: 'email',
                     onChange: (e) => setEmail(e.target.value),
                     value: email,
-                    placeholder: 'Enter your official email',
+                    placeholder: 'Enter your email',
                   }}
                   className="w-full rounded-md text-center text-sm placeholder:font-normal py-3 px-4"
                 />
@@ -119,16 +117,6 @@ export default function LoginPage() {
                 >
                   Sign In
                 </Button>
-                <p className="text-shade-pencil-light px-2 text-center text-xs font-normal tracking-tight">
-                  By continuing, you explicitly agree to Hashdocs&apos; <br />
-                  <Link href={`/terms`} className="underline">
-                    Terms of Service
-                  </Link>{' '}
-                  and{' '}
-                  <Link href={`/privacy`} className="underline">
-                    Privacy Policy
-                  </Link>{' '}
-                </p>
               </>
             )}
           </div>

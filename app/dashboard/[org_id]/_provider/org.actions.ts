@@ -20,7 +20,6 @@ export async function getOrg() {
     const { data: org, error: org_error } = await supabase
       .rpc('get_org')
       .returns<OrgType[]>();
-    console.log('getOrg:', org);
 
     if (!org || org.length === 0 || org_error) {
       throw org_error || new Error('Org not found');

@@ -34,13 +34,6 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${HASHDOCS_META_TAGS.title}`,
-    description: `${HASHDOCS_META_TAGS.description}`,
-    creator: '@rbkayz',
-    images: [`${HASHDOCS_META_TAGS.og_image}`],
-  },
 };
 
 export const viewport: Viewport = {
@@ -54,30 +47,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`flex h-full w-full ${inter.variable}`}>
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
-      <body className="flex flex-1 overflow-hidden flex-col text-sm text-gray-900">
-        <HashdocsToast />
-        {children}
-        <Analytics />
-        {/*<Script*/}
-        {/*  src="https://accounts.google.com/gsi/client"*/}
-        {/*  strategy="beforeInteractive"*/}
-        {/*/>*/}
-        {/*<Script*/}
-        {/*  src="https://www.googletagmanager.com/gtag/js?id=G-QKEK5NGXV4"*/}
-        {/*  async*/}
-        {/*/>*/}
-        {/*<Script id="google-analytics">*/}
-        {/*  {`window.dataLayer = window.dataLayer || [];*/}
-        {/*    function gtag(){dataLayer.push(arguments);}*/}
-        {/*    gtag('js', new Date());*/}
-        {/*  */}
-        {/*    gtag('config', 'G-QKEK5NGXV4');*/}
-        {/*    gtag('config', 'AW-11254957816');`}*/}
-        {/*</Script>*/}
-      </body>
+    <head>
+      <link href="/logo_32.png" rel="shortcut icon" type="image/x-icon" />
+      <link href="/logo_256.png" rel="apple-touch-icon" />
+    </head>
+    <body className="flex flex-1 overflow-hidden flex-col text-sm text-gray-900">
+    <HashdocsToast />
+    {children}
+    </body>
     </html>
   );
 }

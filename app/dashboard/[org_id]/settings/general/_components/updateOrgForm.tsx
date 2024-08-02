@@ -43,7 +43,7 @@ export default function UpdateOrgForm() {
           className="max-w-sm"
           inputProps={{
             name: 'org_name',
-            placeholder: 'e.g. Hashdocs',
+            placeholder: 'e.g. Dealroom',
             defaultValue: org?.org_name || '',
             onChange: handleInputChange,
           }}

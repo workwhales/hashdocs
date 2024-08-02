@@ -40,13 +40,13 @@ export function SidebarUserButton({ org }: { org: OrgType[] }) {
       },
       icon: <BiUserPlus className="h-4 w-4" />,
     },
-    {
-      name: 'Help & Support',
-      optionClick: () => {
-        router.push(`mailto:bharat@hashdocs.org`);
-      },
-      icon: <IoMdHelpCircle className="h-4 w-4" />,
-    },
+    // {
+    //   name: 'Help & Support',
+    //   optionClick: () => {
+    //     router.push(`mailto:bharat@hashdocs.org`);
+    //   },
+    //   icon: <IoMdHelpCircle className="h-4 w-4" />,
+    // },
     {
       name: 'Logout',
       optionClick: () => handleLogout(),
@@ -130,19 +130,19 @@ export function SidebarUserButton({ org }: { org: OrgType[] }) {
               >
                 {({ close }) => (
                   <div className="flex w-48 flex-1 flex-col overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
-                    <Button
-                      key={'new-org'}
-                      onClick={() => handleCreateOrg()}
-                      variant="outline"
-                      className={clsx(
-                        'flex w-full items-center justify-between gap-x-1 truncate border-0 !py-2.5 no-underline shadow-none'
-                      )}
-                    >
-                      <div className="flex flex-1 items-center gap-x-2">
-                        <MdAdd className={clsx('shrink-0')} />
-                        <p className={clsx('text-gray-500')}>{`Create org`}</p>
-                      </div>
-                    </Button>
+                    {/*<Button*/}
+                    {/*  key={'new-org'}*/}
+                    {/*  onClick={() => handleCreateOrg()}*/}
+                    {/*  variant="outline"*/}
+                    {/*  className={clsx(*/}
+                    {/*    'flex w-full items-center justify-between gap-x-1 truncate border-0 !py-2.5 no-underline shadow-none'*/}
+                    {/*  )}*/}
+                    {/*>*/}
+                    {/*  <div className="flex flex-1 items-center gap-x-2">*/}
+                    {/*    <MdAdd className={clsx('shrink-0')} />*/}
+                    {/*    <p className={clsx('text-gray-500')}>{`Create org`}</p>*/}
+                    {/*  </div>*/}
+                    {/*</Button>*/}
                     {org.map((o) => (
                       <Button
                         key={o.org_id}

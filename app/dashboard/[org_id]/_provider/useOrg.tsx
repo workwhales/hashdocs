@@ -27,7 +27,6 @@ export const OrgProvider = ({ children }: { children: React.ReactNode }) => {
         const { org } = await getOrg();
 
         const current_org = org.find((org) => org.org_id === org_id);
-        console.log('OrgContext.currentOrg:', current_org);
 
         if (current_org) {
           setOrg(current_org);

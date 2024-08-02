@@ -37,19 +37,19 @@ export const HashdocsLogo = ({
     >
       <div
         className={clsx(
-          'relative h-12 w-9 shrink-0 overflow-hidden rounded-md',
+          'relative h-12 w-12 shrink-0 overflow-hidden rounded-md',
           logoSizeMap[size]
         )}
       >
         <Image
-          src={'/assets/hashdocs_gradient.svg'}
+          src={'/logo_256.png'}
           fill={true}
-          alt={'Hashdocs'}
+          alt={'Dealroom'}
         />
       </div>
       {full && (
-        <p className={clsx('font-black tracking-wide ', textSizeMap[size])}>
-          Hashdocs
+        <p className={clsx('tracking-wide font-semibold ', textSizeMap[size])}>
+          Dealroom
         </p>
       )}
     </Link>
