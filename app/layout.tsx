@@ -1,6 +1,4 @@
-import { Analytics } from '@vercel/analytics/react';
 import { Metadata, Viewport } from 'next';
-import Script from 'next/script';
 import '../globals.css';
 import HashdocsToast from './_components/toast';
 import { inter } from './_utils/font';
@@ -18,15 +16,15 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: `${HASHDOCS_META_TAGS.title}`,
-    description: `${HASHDOCS_META_TAGS.description}`,
+    title: HASHDOCS_META_TAGS.title,
+    description: HASHDOCS_META_TAGS.description,
     url:
       process.env.NEXT_PUBLIC_BASE_URL ||
       'https://' + process.env.VERCEL_BRANCH_URL,
     siteName: HASHDOCS_META_TAGS.title.default,
     images: [
       {
-        url: `${HASHDOCS_META_TAGS.og_image}`,
+        url: HASHDOCS_META_TAGS.og_image,
         width: 1200,
         height: 630,
       },
@@ -37,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: `${HASHDOCS_META_TAGS.theme_color}`,
+  themeColor: HASHDOCS_META_TAGS.theme_color,
 };
 
 export default function RootLayout({
