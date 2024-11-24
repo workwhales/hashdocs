@@ -1,47 +1,94 @@
 'use client';
 import { OrgType } from '@/types';
-import { useParams } from 'next/navigation';
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
-import { getOrg } from './org.actions';
+import { useParams, useRouter } from 'next/navigation';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
+import { createOrg, getOrg } from './org.actions';
+import { useUser } from './useUser';
 
 interface OrgContext {
-  org: OrgType;
+  org: OrgType | undefined;
+  revalidateOrg: () => Promise<void>;
+  orgData: OrgType[] | undefined;
+  handleCreateOrg: () => Promise<void>;
 }
 
 export const OrgContext = createContext<OrgContext>(null!);
 
 export const OrgProvider = ({ children }: { children: React.ReactNode }) => {
-  const [org, setOrg] = useState<OrgType>(null!);
+  const [orgData, setOrgData] = useState<OrgType[]>();
 
-  const { org_id } = useParams();
+  const params = useParams();
+  const router = useRouter();
+  const { handleLogout, handleRefreshSession } = useUser();
 
   useEffect(() => {
-    if (org_id) {
-      const fetchOrg = async () => {
-        const { org } = await getOrg();
+    revalidateOrg();
+  }, []);
 
-        const current_org = org.find((org) => org.org_id === org_id);
+  const org = useMemo(
+    () => orgData?.find((o) => o.org_id == params.org_id),
+    [orgData, params]
+  );
 
-        if (current_org) {
-          setOrg(current_org);
-        }
-      };
+  // REDIRECT
 
-      fetchOrg();
+  useEffect(() => {
+    if (orgData && params.org_id && !org) {
+      router.push(`/dashboard/${orgData[0].org_id}/documents`);
     }
-  }, [org_id]);
+
+    if (orgData && orgData.length == 1) {
+      router.push(`/dashboard/${orgData[0].org_id}/documents`);
+    }
+  }, [orgData, router, params.org_id, org]);
+
+  const handleCreateOrg = async (with_toast = true) => {
+    const createOrgPromise = new Promise(async (resolve, reject) => {
+      try {
+        if (
+          orgData &&
+          orgData.length > 0 &&
+          orgData.find((o) => o.org_plan == 'Free')
+        ) {
+          throw new Error(
+            'Only one org is allowed on the free plan. Please upgrade to create additional organizations'
+          );
+        }
+
+        const new_org = await createOrg();
+        await handleRefreshSession();
+        await revalidateOrg();
+        resolve(new_org);
+      } catch (error) {
+        reject(error);
+      }
+    });
+
+    with_toast
+      ? await toast.promise(createOrgPromise, {
+          loading: 'Creating org...',
+          success: 'Org created successfully',
+          error: (error) => error?.message ?? 'Failed to create org',
+        })
+      : await createOrgPromise.then(() => {}).catch(() => {});
+  };
+
+  const revalidateOrg = async () => {
+    await handleRefreshSession();
+    let _org = await getOrg();
+    setOrgData(_org);
+  };
 
   const value = useMemo(
     () => ({
       org,
+      revalidateOrg,
+      handleCreateOrg,
+      orgData,
     }),
-    [org]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [org, orgData]
   );
 
   return <OrgContext.Provider value={value}>{children}</OrgContext.Provider>;
